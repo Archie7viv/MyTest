@@ -31,8 +31,8 @@ namespace N_Ix_study_1
             task3.SimpleCycles();
             task3.TenTimesLoop();
             int factorial = task3.RecursionWithExitCondition(3);
-            task3.InfiniteLoop();
-            task3.RecursionWithoutExitCondition(4);
+            //task3.InfiniteLoop();
+            //task3.RecursionWithoutExitCondition(4);
 
             Task4 task4 = new Task4();
             task4.MyList();

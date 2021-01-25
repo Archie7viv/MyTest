@@ -17,9 +17,8 @@ namespace N_Ix_study_1.SeleniumWebDriver
         By passwordNextButtonLocator = By.XPath("//DIV[@id='passwordNext']//BUTTON");
         public string emailSubj;
 
-        private readonly string login = "nixautotest@gmail.com";
-        private readonly string password = "MyT3sT20";
-        
+        //private readonly string login = "nixautotest@gmail.com";
+        private readonly string password = "MyT3sT20";       
         
         public GmailTask() { }
 
@@ -37,7 +36,7 @@ namespace N_Ix_study_1.SeleniumWebDriver
             ClickNextOnPassword();
         }
 
-        public void EnterLogin()
+        public void EnterLogin(string login = "nixautotest@gmail.com")
         {
             WaitForElementToBeVisible(loginFieldLocator);
             loginField = driver.FindElement(loginFieldLocator);
@@ -93,6 +92,34 @@ namespace N_Ix_study_1.SeleniumWebDriver
             {
                 //do something
             }
+        }
+
+        public bool IsPasswordFieldDisplayed()
+        {
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            try
+            {
+                driver.FindElement(passwordFieldLocator);
+            }
+            catch (NoSuchElementException ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool IsMessagesListDisplayed()
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            try
+            {
+                driver.FindElement(By.ClassName("zE"));
+            }
+            catch(NoSuchElementException ex)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
