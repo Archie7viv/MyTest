@@ -1,5 +1,5 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using N_Ix_study_1.Common;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
@@ -7,9 +7,8 @@ using System.Collections.Generic;
 
 namespace N_Ix_study_1.SeleniumWebDriver
 {
-    public class GmailTask
+    public class Gmail : BasePage
     {
-        IWebDriver driver = new ChromeDriver();
         public IWebElement loginField, passwordField, loginNextButton, passwordNextButton;
         By loginFieldLocator = By.XPath("//INPUT[@id='identifierId']");
         By passwordFieldLocator = By.XPath("//INPUT[@type='password']");
@@ -20,15 +19,16 @@ namespace N_Ix_study_1.SeleniumWebDriver
         //private readonly string login = "nixautotest@gmail.com";
         private readonly string password = "MyT3sT20";       
         
-        public GmailTask() { }
-
-        public void OpenGmail()
+        public Gmail(IWebDriver driver) : base(driver)
         {
-            driver.Manage().Window.Maximize();
+        }
+
+        public void Open()
+        {
             driver.Navigate().GoToUrl("https://mail.google.com/mail");
         }
 
-        public void LoginToGmail()
+        public void Login()
         {
             EnterLogin();
             ClickNextOnLogin();

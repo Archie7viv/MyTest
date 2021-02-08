@@ -49,6 +49,7 @@
       <HintPath>..\packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -65,6 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicOOP\BasicOop.cs" />
     <Compile Include="Basic\Task1.cs" />
     <Compile Include="Basic\Task10.cs" />
     <Compile Include="Basic\Task2.cs" />
@@ -75,13 +77,18 @@
     <Compile Include="Basic\Task7.cs" />
     <Compile Include="Basic\Task8_Serialization.cs" />
     <Compile Include="Basic\Task9.cs" />
-    <Compile Include="Tests\Tests.cs" />
+    <Compile Include="Common\BasePage.cs" />
+    <Compile Include="Common\BaseTest.cs" />
+    <Compile Include="Tests\GmailTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeleniumWebDriver\GmailTask.cs" />
+    <Compile Include="Tests\TestsWithParameters.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -67,11 +67,6 @@ namespace N_Ix_study_1
             task10.AllWToUppercase();
             task10.FirstWToUppercase();
             task10.ParsePrice();
-
-            GmailTask test = new GmailTask();
-            test.OpenGmail();
-            test.LoginToGmail();
-            test.GetEmailsByCSSSelector(10);
         }
     }
 }
