@@ -7,19 +7,21 @@ using System.Collections.Generic;
 
 namespace N_Ix_study_1.SeleniumWebDriver
 {
-    public class Gmail : BasePage
+    public class GmailPage : BasePage
     {
         public IWebElement loginField, passwordField, loginNextButton, passwordNextButton;
         By loginFieldLocator = By.XPath("//INPUT[@id='identifierId']");
         By passwordFieldLocator = By.XPath("//INPUT[@type='password']");
         By loginNextButtonLocator = By.XPath("//DIV[@id='identifierNext']//BUTTON");
         By passwordNextButtonLocator = By.XPath("//DIV[@id='passwordNext']//BUTTON");
+        By emailListContainer = By.XPath("//DIV[@class='aDP']");
+
         public string emailSubj;
 
         //private readonly string login = "nixautotest@gmail.com";
         private readonly string password = "MyT3sT20";       
         
-        public Gmail(IWebDriver driver) : base(driver)
+        public GmailPage(IWebDriver driver) : base(driver)
         {
         }
 
@@ -64,16 +66,9 @@ namespace N_Ix_study_1.SeleniumWebDriver
             passwordNextButton.Click();
         }
 
-        public void WaitForElementToBeVisible(By locator)
+        public void WaitForEmailList()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(ExpectedConditions.ElementIsVisible(locator));
-        }
-
-        public void WaitForElementToBeClickable(By locator)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(ExpectedConditions.ElementToBeClickable(locator));
+            WaitForElementToBeVisible(emailListContainer);
         }
 
         public void GetEmailsByClass(int numberOfEmails)
@@ -87,6 +82,7 @@ namespace N_Ix_study_1.SeleniumWebDriver
 
         public void GetEmailsByCSSSelector(int numberOfEmails)
         {
+            WaitForEmailList();
             IReadOnlyCollection<IWebElement> unreademail = driver.FindElements(By.CssSelector(".zE"));
             for (int i = 0; i < numberOfEmails; i++)
             {
@@ -120,6 +116,18 @@ namespace N_Ix_study_1.SeleniumWebDriver
                 return false;
             }
             return true;
+        }
+
+        private void WaitForElementToBeVisible(By locator)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(ExpectedConditions.ElementIsVisible(locator));
+        }
+
+        private void WaitForElementToBeClickable(By locator)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(ExpectedConditions.ElementToBeClickable(locator));
         }
     }
 }

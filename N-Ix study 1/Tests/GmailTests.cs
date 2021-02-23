@@ -6,25 +6,24 @@ using System.Configuration;
 namespace N_Ix_study_1.Basic
 {
     
-    [TestFixture, Category("Gmail"), ]
+    [TestFixture, Category("Gmail"), Parallelizable(ParallelScope.All)]
     public class GmailTests : BaseTest
     {
-        static string parallelizationValue = ConfigurationManager.AppSettings["Parallelizable"];
-        Gmail gmail;
+        GmailPage gmail;
         
         [SetUp]
         public void Setup()
         {
-            gmail = new Gmail(driver);    
+            gmail = new GmailPage(driver);    
         }
 
         [TearDown]
         public void Teardown()
         {
-            driver.Close();
+            driver.Quit();
         }
 
-        [Test, Parallelizable(parallelizationValue)]
+        [Test]
         public void LoginToGmail()
         {
             gmail.Open();

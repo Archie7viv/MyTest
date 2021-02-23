@@ -66,7 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicOOP\BasicOop.cs" />
+    <Compile Include="BasicOOP\Person.cs" />
     <Compile Include="Basic\Task1.cs" />
     <Compile Include="Basic\Task10.cs" />
     <Compile Include="Basic\Task2.cs" />
@@ -90,6 +90,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Settings\Chrome.runsettings" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.87.0.4280.8800\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.87.0.4280.8800\build\Selenium.WebDriver.ChromeDriver.targets')" />

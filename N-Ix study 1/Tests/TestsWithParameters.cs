@@ -5,20 +5,16 @@ using System.Configuration;
 
 namespace N_Ix_study_1.Tests
 {
-    [TestFixture, Category("WithParameters")]
+    [TestFixture, Category("WithParameters"), Parallelizable(ParallelScope.All)]
     public class TestsWithParameters : BaseTest
     {
-        static  string[] values = ConfigurationManager.AppSettings["Parameters"].Split(',');
-
         [Test]
-        public void TestWithParameters([Values(values)] string text)
+        public void TestWithParameters([Values("one", "two", "three")] string text)
         {
             driver.Navigate().GoToUrl("http://www.google.com");
             var searchText = driver.FindElement(By.CssSelector(".gLFyf"));
             searchText.SendKeys(text);
             searchText.SendKeys(Keys.Enter);
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
         }
     }
 }

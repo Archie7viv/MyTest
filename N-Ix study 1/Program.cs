@@ -1,10 +1,5 @@
 ﻿using N_Ix_study_1.Basic;
-using N_Ix_study_1.SeleniumWebDriver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using N_Ix_study_1.BasicOOP;
 
 namespace N_Ix_study_1
 {
@@ -12,6 +7,13 @@ namespace N_Ix_study_1
     {
         static void Main(string[] args)
         {
+            Person person = new Person("Andy", 25);
+            Person person2 = new Person("John", 39, 194, 100, true);
+            Person.DescribePerson(person);
+            Person.DescribePerson(person2);
+            ExtendedPerson emptyPerson = new ExtendedPerson();
+            Person.DescribePerson(emptyPerson);
+
             Task1 task1 = new Task1();
             task1.AssignDifferentValues();
             task1.DontAssignValues();
