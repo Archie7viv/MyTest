@@ -14,6 +14,9 @@ namespace N_Ix_study_1
             ExtendedPerson emptyPerson = new ExtendedPerson();
             Person.DescribePerson(emptyPerson);
 
+            //Get person age
+            Person.GetAge(person);
+
             Task1 task1 = new Task1();
             task1.AssignDifferentValues();
             task1.DontAssignValues();

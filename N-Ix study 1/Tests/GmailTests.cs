@@ -5,7 +5,6 @@ using System.Configuration;
 
 namespace N_Ix_study_1.Basic
 {
-    
     [TestFixture, Category("Gmail"), Parallelizable(ParallelScope.All)]
     public class GmailTests : BaseTest
     {

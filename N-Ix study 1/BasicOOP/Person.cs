@@ -11,7 +11,7 @@ namespace N_Ix_study_1.BasicOOP
         private int _weight;
         protected bool _isClient;
 
-        public static int Age
+        private int Age
         {
             get { return Age; }
             set
@@ -42,6 +42,12 @@ namespace N_Ix_study_1.BasicOOP
         public static void DescribePerson(Person person)
         {
             Console.WriteLine(person.ToString());
+        }
+
+        public static 
+            void GetAge(Person person)
+        {
+            Console.WriteLine("Age = " + person._age);
         }
     }
 
