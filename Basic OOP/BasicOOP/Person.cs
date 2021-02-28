@@ -44,19 +44,9 @@ namespace N_Ix_study_1.BasicOOP
             Console.WriteLine(person.ToString());
         }
 
-        public static 
-            void GetAge(Person person)
+        public static void GetAge(Person person)
         {
             Console.WriteLine("Age = " + person._age);
-        }
-    }
-
-    public class ExtendedPerson : Person
-    {
-        //Constructor with no parameters
-        public ExtendedPerson() : base()
-        {
-
         }
     }
 }

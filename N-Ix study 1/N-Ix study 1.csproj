@@ -72,7 +72,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicOOP\Person.cs" />
     <Compile Include="Basic\Task1.cs" />
     <Compile Include="Basic\Task10.cs" />
     <Compile Include="Basic\Task2.cs" />

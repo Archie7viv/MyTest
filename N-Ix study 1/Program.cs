@@ -1,5 +1,4 @@
 ﻿using N_Ix_study_1.Basic;
-using N_Ix_study_1.BasicOOP;
 
 namespace N_Ix_study_1
 {
@@ -7,16 +6,6 @@ namespace N_Ix_study_1
     {
         static void Main(string[] args)
         {
-            Person person = new Person("Andy", 25);
-            Person person2 = new Person("John", 39, 194, 100, true);
-            Person.DescribePerson(person);
-            Person.DescribePerson(person2);
-            ExtendedPerson emptyPerson = new ExtendedPerson();
-            Person.DescribePerson(emptyPerson);
-
-            //Get person age
-            Person.GetAge(person);
-
             Task1 task1 = new Task1();
             task1.AssignDifferentValues();
             task1.DontAssignValues();
