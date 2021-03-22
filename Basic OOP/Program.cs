@@ -1,6 +1,7 @@
 ﻿using Basic_OOP.BasicOOP;
 using Basic_OOP.BasicOOP.Interface;
 using N_Ix_study_1.BasicOOP;
+using System;
 
 namespace Basic_OOP
 {
@@ -8,16 +9,20 @@ namespace Basic_OOP
     {
         static void Main(string[] args)
         {
-            //Person person = new Person("Andy", 25);
-            //Person person2 = new Person("John", 39, 194, 100, true);
-            //Person.DescribePerson(person);
-            //Person.DescribePerson(person2);
-            //ExtendedPerson emptyPerson = new ExtendedPerson();
-            //Person.DescribePerson(emptyPerson);
+            DateTime bDay = new DateTime(2000, 1, 29);
+            DateTime bDay2 = new DateTime(1980, 2, 25);
 
-            ////Get person age
-            //Person.GetAge(person);
-            //Person.GetAge(person2);
+            Person person = new Person("Andy", bDay);
+            Person person2 = new Person("John", bDay2, 194, 100, true);
+            Person.DescribePerson(person);
+            Person.DescribePerson(person2);
+            ExtendedPerson emptyPerson = new ExtendedPerson();
+            
+            Person.DescribePerson(emptyPerson);
+
+            //Get person age
+            Person.GetAge(person);
+            Person.GetAge(person2);
 
             //Polymorphysm
             PolymorphysmBase polly = new Human();
@@ -34,6 +39,7 @@ namespace Basic_OOP
 
             jack.WriteName();
             john.WriteName();
+            john.ShowAge();
         }
     }
 }

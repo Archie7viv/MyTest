@@ -1,14 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using Basic_OOP.BasicOOP.Interface;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SeleniumTests
 {
     [TestClass]
-    public class TestBase
+    public class TestBase : Driver
     {
-        public static IWebDriver driver;
         public static string baseUrl = string.Empty;
+        public static string browserType;
+        public static bool driverType;
+        public Driver myDriver;
 
         [AssemblyInitialize]
         public static void SetUp(TestContext context)
@@ -17,19 +18,28 @@ namespace SeleniumTests
             {
                 baseUrl = context.Properties["TestEnvironmentUrl"].ToString();
             }
+            browserType = context.Properties["CurrentBrowser"].ToString();
         }
 
         [TestInitialize]
         public void TestSetup()
         {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
+            if (browserType == "Chrome")
+            {
+                myDriver = new MyChromeDriver();
+            }
+            else
+            {
+                myDriver = new MyFirefoxDriver();
+            }
+            myDriver.MaximizeWindow();
+            myDriver.Navigate(baseUrl);
         }
 
         [TestCleanup]
         public void TearDown()
         {
-            driver.Quit();
+            myDriver.CloseBrowser();
         }
     }
 }

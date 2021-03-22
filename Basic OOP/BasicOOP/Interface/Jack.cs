@@ -2,7 +2,7 @@
 
 namespace Basic_OOP.BasicOOP.Interface
 {
-    class Jack : IBaseInterface
+    public class Jack : IBaseInterface
     {
         public void WriteName()
         {

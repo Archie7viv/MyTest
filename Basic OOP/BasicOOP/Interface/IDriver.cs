@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using OpenQA.Selenium;
 
 namespace Basic_OOP.BasicOOP.Interface
 {
-    interface IDriver
+    public interface IDriver
     {
-        void ClickOnButton();
+        public void ClickOnButton(By elementLocator);
 
-        void ClickOnElement();
+        public string GetTextOfElement(By elementLocator);
+
+        public void MaximizeWindow();
+
+        public void Navigate(string url);
+
+        public void CloseBrowser();
     }
 }

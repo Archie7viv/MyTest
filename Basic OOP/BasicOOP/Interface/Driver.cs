@@ -1,18 +1,50 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+using System;
 
 namespace Basic_OOP.BasicOOP.Interface
 {
     public abstract class Driver : IDriver
     {
-        protected void ClickOnButton()
+        public IWebDriver driver;
+        public bool isClickCalled;
+        public virtual void ClickOnButton(By elementLocator)
         {
-            throw new NotImplementedException();
+            ClickOnElement(elementLocator);
+            isClickCalled = true;
         }
 
-        //frames of pakage?
-        public void ClickOnElement()
+        public virtual string GetTextOfElement(By elementLocator)
         {
-            throw new NotImplementedException();
+            return FindElement(elementLocator).Text;
+        }
+
+        protected void ClickOnElement(By elementLocator)
+        {
+            FindElement(elementLocator).Click();
+        }
+
+        internal IWebElement FindElement(By elementLocator)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(ExpectedConditions.ElementIsVisible(elementLocator));
+            return driver.FindElement(elementLocator);
+        }
+
+        public void MaximizeWindow()
+        {
+            driver.Manage().Window.Maximize();
+        }
+
+        public void Navigate(string url)
+        {
+            driver.Navigate().GoToUrl(url);
+        }
+
+        public void CloseBrowser()
+        {
+            driver.Quit();
         }
     }
 }

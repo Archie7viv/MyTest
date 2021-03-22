@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Basic_OOP.BasicOOP.Interface
 {
-    interface IBaseInterface
+    public interface IBaseInterface
     {
-        void WriteName();
+        public void WriteName();
     }
 }

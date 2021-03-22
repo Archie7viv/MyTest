@@ -1,38 +1,41 @@
-﻿using N_Ix_study_1.Common;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using N_Ix_study_1.Common;
 using N_Ix_study_1.SeleniumWebDriver;
-using NUnit.Framework;
-using System.Configuration;
 
 namespace N_Ix_study_1.Basic
 {
-    [TestFixture, Category("Gmail"), Parallelizable(ParallelScope.All)]
+    [TestClass]
     public class GmailTests : BaseTest
     {
         GmailPage gmail;
-        
-        [SetUp]
+        private string login, password;
+        public TestContext TestContext { get; set; }
+
+        [TestInitialize]
         public void Setup()
         {
-            gmail = new GmailPage(driver);    
+            gmail = new GmailPage(driver);   
+            login = TestContext.Properties["GmailLogin1"].ToString();
+            password = TestContext.Properties["GmailPassword1"].ToString();
         }
 
-        [TearDown]
+        [TestCleanup]
         public void Teardown()
         {
             driver.Quit();
         }
 
-        [Test]
+        [TestMethod]
         public void LoginToGmail()
         {
             gmail.Open();
-            gmail.Login();
+            gmail.Login(login, password);
 
             //Is messages list displayed
             Assert.IsTrue(gmail.IsMessagesListDisplayed(), "Messages list was not loaded");
         }
 
-        [Test]
+        [TestMethod]
         public void LoginWithWrongCredentials()
         {
             gmail.Open();
@@ -42,11 +45,11 @@ namespace N_Ix_study_1.Basic
             Assert.IsTrue(gmail.IsPasswordFieldDisplayed(), "Login was incorrect, the password field is not displayed");
         }
 
-        [Test]
+        [TestMethod]
         public void GetLast10Emails()
         {
             gmail.Open();
-            gmail.Login();
+            gmail.Login(login, password);
             gmail.GetEmailsByCSSSelector(10);
         }
     }

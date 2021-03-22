@@ -17,9 +17,6 @@ namespace N_Ix_study_1.SeleniumWebDriver
         By emailListContainer = By.XPath("//DIV[@class='aDP']");
 
         public string emailSubj;
-
-        //private readonly string login = "nixautotest@gmail.com";
-        private readonly string password = "MyT3sT20";       
         
         public GmailPage(IWebDriver driver) : base(driver)
         {
@@ -30,15 +27,15 @@ namespace N_Ix_study_1.SeleniumWebDriver
             driver.Navigate().GoToUrl("https://mail.google.com/mail");
         }
 
-        public void Login()
+        public void Login(string login, string password)
         {
-            EnterLogin();
+            EnterLogin(login);
             ClickNextOnLogin();
-            EnterPassword();
+            EnterPassword(password);
             ClickNextOnPassword();
         }
 
-        public void EnterLogin(string login = "nixautotest@gmail.com")
+        public void EnterLogin(string login)
         {
             WaitForElementToBeVisible(loginFieldLocator);
             loginField = driver.FindElement(loginFieldLocator);
@@ -52,7 +49,7 @@ namespace N_Ix_study_1.SeleniumWebDriver
             loginNextButton.Click();
         }
 
-        public void EnterPassword()
+        public void EnterPassword(string password)
         {
             WaitForElementToBeVisible(passwordFieldLocator);
             passwordField = driver.FindElement(passwordFieldLocator);
@@ -92,7 +89,6 @@ namespace N_Ix_study_1.SeleniumWebDriver
 
         public bool IsPasswordFieldDisplayed()
         {
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             try
             {
                 driver.FindElement(passwordFieldLocator);

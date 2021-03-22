@@ -6,28 +6,29 @@ namespace N_Ix_study_1.BasicOOP
     public class Person
     {
         private string _name;
+        private DateTime _bDate;
         private int _age;
         private double _heigh;
         private int _weight;
         protected bool _isClient;
 
-        private int Age
+        public int Age
         {
-            get { return Age; }
-            set
+            get 
             {
-                if (Age < 12) throw new ArgumentException("too young");
-                else if(Age > 100) throw new ArgumentException("too old");
+                var today = DateTime.Today;
+                var age = today.Year - _bDate.Year;
+                return age;
             }
         }
         public string Name { get; set; }
 
-        public Person() { }
+        protected Person() { }
 
-        public Person(string name, int bDate, double heigh = 180, int weight = 80, bool isClient = false)
+        public Person(string name, DateTime bDate, double heigh = 180, int weight = 80, bool isClient = false)
         {
             _name = name;
-            _age = bDate;
+            _bDate = bDate;
             _heigh = heigh;
             _weight = weight;
             _isClient = isClient;
@@ -35,7 +36,7 @@ namespace N_Ix_study_1.BasicOOP
 
         public override string ToString()
         {
-            return "Person Name: " + _name + " | Age: " + _age + " | Height: " + _heigh + " | Weight: " + _weight + " | Already subscribed: " + _isClient;
+            return $"Person Name: {_name} | Age: {Age} | Height: {_heigh} | Weight: {_weight} | Already subscribed: {_isClient}";
         }
 
         //Print text representation of an instance
@@ -46,7 +47,7 @@ namespace N_Ix_study_1.BasicOOP
 
         public static void GetAge(Person person)
         {
-            Console.WriteLine("Age = " + person._age);
+            Console.WriteLine("Age = " + person.Age);
         }
     }
 }

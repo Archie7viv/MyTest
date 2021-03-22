@@ -2,7 +2,7 @@
 
 namespace Basic_OOP.BasicOOP.Interface
 {
-    class John : IBaseInterface, ISecondInterface
+    public class John : IBaseInterface, ISecondInterface
     {
         public void WriteName()
         {

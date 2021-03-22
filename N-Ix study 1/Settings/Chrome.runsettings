@@ -6,5 +6,8 @@
     <Parameter name="CurrentBrowser" value="Chrome" />
 	  <Parameter name="BrowserInHeadlessMode" value="false" />
     <Parameter name="TestEnvironmentUrl" value="http://www.google.com" />
+    <Parameter name="MailboxUrl" value="http://www.google.com" />
+    <Parameter name="GmailLogin1" value="nixautotest@gmail.com" />
+    <Parameter name="GmailPassword1" value="MyT3sT20" />
   </TestRunParameters>
 </RunSettings>
