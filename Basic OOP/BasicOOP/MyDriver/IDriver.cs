@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Basic_OOP.BasicOOP.Interface
+namespace Basic_OOP.BasicOOP.MyDriver
 {
     public interface IDriver
     {

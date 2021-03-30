@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Basic_OOP.BasicOOP.Interface
+namespace Basic_OOP.BasicOOP.MyDriver
 {
     public class MyChromeDriver : Driver
     {

@@ -1,4 +1,4 @@
-﻿using Basic_OOP.BasicOOP.Interface;
+﻿using Basic_OOP.BasicOOP.MyDriver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SeleniumTests

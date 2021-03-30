@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
 
-namespace Basic_OOP.BasicOOP.Interface
+namespace Basic_OOP.BasicOOP.MyDriver
 {
     public abstract class Driver : IDriver
     {

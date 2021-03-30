@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 
-namespace Basic_OOP.BasicOOP.Interface
+namespace Basic_OOP.BasicOOP.MyDriver
 {
     public class MyFirefoxDriver : Driver
     {
