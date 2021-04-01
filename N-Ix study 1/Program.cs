@@ -1,4 +1,5 @@
 ﻿using N_Ix_study_1.Basic;
+using N_Ix_study_1.RegularExpressions;
 
 namespace N_Ix_study_1
 {
@@ -6,6 +7,19 @@ namespace N_Ix_study_1
     {
         static void Main(string[] args)
         {
+            string someText = "sometext444is777here";
+            string textWithIp = "My IP is 185.219.78.170 !";
+
+            MyRegexp reg = new MyRegexp();
+            string digits = reg.ExtractDigits(someText);
+            string letters = reg.ExtractLetters(someText);
+            string textAfterSymbol = reg.ExtractTextAfterSymbol(someText, "x");
+            string ip = reg.ExtractIp(textWithIp);
+
+            reg.CreateWriteFile(textWithIp);
+            string ipFromFile = reg.ExtractIpFromFile();
+            reg.DeleteFile();       
+
             Task1 task1 = new Task1();
             task1.AssignDifferentValues();
             task1.DontAssignValues();
