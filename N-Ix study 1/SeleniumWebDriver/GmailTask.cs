@@ -7,19 +7,18 @@ using System.Collections.Generic;
 
 namespace N_Ix_study_1.SeleniumWebDriver
 {
-    public class Gmail : BasePage
+    public class GmailPage : BasePage
     {
         public IWebElement loginField, passwordField, loginNextButton, passwordNextButton;
         By loginFieldLocator = By.XPath("//INPUT[@id='identifierId']");
         By passwordFieldLocator = By.XPath("//INPUT[@type='password']");
         By loginNextButtonLocator = By.XPath("//DIV[@id='identifierNext']//BUTTON");
         By passwordNextButtonLocator = By.XPath("//DIV[@id='passwordNext']//BUTTON");
-        public string emailSubj;
+        By emailListContainer = By.XPath("//DIV[@class='aDP']");
 
-        //private readonly string login = "nixautotest@gmail.com";
-        private readonly string password = "MyT3sT20";       
+        public string emailSubj;
         
-        public Gmail(IWebDriver driver) : base(driver)
+        public GmailPage(IWebDriver driver) : base(driver)
         {
         }
 
@@ -28,15 +27,15 @@ namespace N_Ix_study_1.SeleniumWebDriver
             driver.Navigate().GoToUrl("https://mail.google.com/mail");
         }
 
-        public void Login()
+        public void Login(string login, string password)
         {
-            EnterLogin();
+            EnterLogin(login);
             ClickNextOnLogin();
-            EnterPassword();
+            EnterPassword(password);
             ClickNextOnPassword();
         }
 
-        public void EnterLogin(string login = "nixautotest@gmail.com")
+        public void EnterLogin(string login)
         {
             WaitForElementToBeVisible(loginFieldLocator);
             loginField = driver.FindElement(loginFieldLocator);
@@ -50,7 +49,7 @@ namespace N_Ix_study_1.SeleniumWebDriver
             loginNextButton.Click();
         }
 
-        public void EnterPassword()
+        public void EnterPassword(string password)
         {
             WaitForElementToBeVisible(passwordFieldLocator);
             passwordField = driver.FindElement(passwordFieldLocator);
@@ -64,16 +63,9 @@ namespace N_Ix_study_1.SeleniumWebDriver
             passwordNextButton.Click();
         }
 
-        public void WaitForElementToBeVisible(By locator)
+        public void WaitForEmailList()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(ExpectedConditions.ElementIsVisible(locator));
-        }
-
-        public void WaitForElementToBeClickable(By locator)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(ExpectedConditions.ElementToBeClickable(locator));
+            WaitForElementToBeVisible(emailListContainer);
         }
 
         public void GetEmailsByClass(int numberOfEmails)
@@ -87,6 +79,7 @@ namespace N_Ix_study_1.SeleniumWebDriver
 
         public void GetEmailsByCSSSelector(int numberOfEmails)
         {
+            WaitForEmailList();
             IReadOnlyCollection<IWebElement> unreademail = driver.FindElements(By.CssSelector(".zE"));
             for (int i = 0; i < numberOfEmails; i++)
             {
@@ -96,7 +89,6 @@ namespace N_Ix_study_1.SeleniumWebDriver
 
         public bool IsPasswordFieldDisplayed()
         {
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             try
             {
                 driver.FindElement(passwordFieldLocator);
@@ -120,6 +112,18 @@ namespace N_Ix_study_1.SeleniumWebDriver
                 return false;
             }
             return true;
+        }
+
+        private void WaitForElementToBeVisible(By locator)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(ExpectedConditions.ElementIsVisible(locator));
+        }
+
+        private void WaitForElementToBeClickable(By locator)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(ExpectedConditions.ElementToBeClickable(locator));
         }
     }
 }

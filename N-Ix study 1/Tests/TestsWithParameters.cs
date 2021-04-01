@@ -1,24 +1,39 @@
-﻿using N_Ix_study_1.Common;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using System.Configuration;
+using OpenQA.Selenium.Chrome;
 
 namespace N_Ix_study_1.Tests
 {
-    [TestFixture, Category("WithParameters")]
-    public class TestsWithParameters : BaseTest
+    [TestClass]
+    public class TestsWithParameters
     {
-        static  string[] values = ConfigurationManager.AppSettings["Parameters"].Split(',');
+        public IWebDriver driver;
+        private string testUrl;
+        public Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext { get; set; }
 
-        [Test]
-        public void TestWithParameters([Values(values)] string text)
+        [TestMethod]
+        public void HomePageTest()
         {
-            driver.Navigate().GoToUrl("http://www.google.com");
+            driver = new ChromeDriver();
+            driver.Manage().Window.Maximize();
+            testUrl = TestContext.Properties["TestEnvironmentUrl"].ToString();
+
+            driver.Navigate().GoToUrl(testUrl);
+            var searchText = driver.FindElement(By.CssSelector(".gLFyf"));
+            searchText.SendKeys("one");
+            searchText.SendKeys(Keys.Enter);
+        }
+
+        [TestMethod]
+        public void TestWithParameters([Values("one", "two", "three")] string text)
+        {
+            testUrl = TestContext.Properties["TestEnvironmentUrl"].ToString();
+
+            driver.Navigate().GoToUrl(testUrl);
             var searchText = driver.FindElement(By.CssSelector(".gLFyf"));
             searchText.SendKeys(text);
             searchText.SendKeys(Keys.Enter);
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
         }
     }
 }
