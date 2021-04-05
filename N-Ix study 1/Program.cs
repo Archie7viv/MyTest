@@ -1,5 +1,5 @@
 ﻿using N_Ix_study_1.Basic;
-using N_Ix_study_1.RegularExpressions;
+using N_Ix_study_1.RegularExpressionsTask;
 
 namespace N_Ix_study_1
 {
@@ -10,15 +10,16 @@ namespace N_Ix_study_1
             string someText = "sometext444is777here";
             string textWithIp = "My IP is 185.219.78.170 !";
 
-            MyRegexp reg = new MyRegexp();
-            string digits = reg.ExtractDigits(someText);
-            string letters = reg.ExtractLetters(someText);
-            string textAfterSymbol = reg.ExtractTextAfterSymbol(someText, "x");
-            string ip = reg.ExtractIp(textWithIp);
+            string digits = MyRegexp.ExtractDigits(someText);
+            string letters = MyRegexp.ExtractLetters(someText);
+            string textAfterSymbol = MyRegexp.ExtractTextAfterSymbol(someText, "x");
+            string ip = MyRegexp.ExtractIp(textWithIp);
 
-            reg.CreateWriteFile(textWithIp);
-            string ipFromFile = reg.ExtractIpFromFile();
-            reg.DeleteFile();       
+            FileActions file = new FileActions();
+            file.CreateWriteFile(textWithIp);
+            string fileText = file.ReadFromFIle();
+            string ipFromFile = MyRegexp.ExtractIp(fileText);
+            file.DeleteFile();       
 
             Task1 task1 = new Task1();
             task1.AssignDifferentValues();

@@ -1,5 +1,4 @@
 ﻿using Basic_OOP.BasicOOP;
-using Basic_OOP.BasicOOP.MyDriver;
 using N_Ix_study_1.BasicOOP;
 using System;
 
