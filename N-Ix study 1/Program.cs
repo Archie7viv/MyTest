@@ -10,15 +10,15 @@ namespace N_Ix_study_1
             string someText = "sometext444is777here";
             string textWithIp = "My IP is 185.219.78.170 !";
 
-            string digits = MyRegexp.ExtractDigits(someText);
-            string letters = MyRegexp.ExtractLetters(someText);
-            string textAfterSymbol = MyRegexp.ExtractTextAfterSymbol(someText, "x");
-            string ip = MyRegexp.ExtractIp(textWithIp);
+            string digits = someText.ExtractDigits();
+            string letters = someText.ExtractLetters();
+            string textAfterSymbol = someText.ExtractTextAfterSymbol("x");
+            string ip = textWithIp.ExtractIp();
 
             FileActions file = new FileActions();
             file.CreateWriteFile(textWithIp);
             string fileText = file.ReadFromFIle();
-            string ipFromFile = MyRegexp.ExtractIp(fileText);
+            string ipFromFile = fileText.ExtractIp();
             file.DeleteFile();       
 
             Task1 task1 = new Task1();

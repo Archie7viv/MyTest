@@ -8,7 +8,7 @@ namespace N_Ix_study_1.RegularExpressionsTask
         static Regex re;
         static Match match;
 
-        public static string ExtractDigits(string text)
+        public static string ExtractDigits(this string text)
         {
             List<string> myList = new List<string>();
             Regex re = new Regex(@"[0-9]+");
@@ -20,7 +20,7 @@ namespace N_Ix_study_1.RegularExpressionsTask
             return string.Join("", myList);
         }
 
-        public static string ExtractLetters(string text)
+        public static string ExtractLetters(this string text)
         {
             List<string> myList = new List<string>();
             Regex re = new Regex(@"[a-z]+");
@@ -32,14 +32,14 @@ namespace N_Ix_study_1.RegularExpressionsTask
             return string.Join("", myList);
         }
 
-        public static string ExtractTextAfterSymbol(string text, string symbol)
+        public static string ExtractTextAfterSymbol(this string text, string symbol)
         {
             Regex re = new Regex(symbol + ".*$");
             Match match = re.Match(text);
             return match.Value;
         }
 
-        public static string ExtractIp(string text)
+        public static string ExtractIp(this string text)
         {
             re = new Regex(@"\d\d?\d?\.\d\d?\d?\.\d\d?\d?\.\d\d?\d?");
             match = re.Match(text);

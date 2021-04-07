@@ -5,7 +5,7 @@ namespace N_Ix_study_1.RegularExpressionsTask
 {
     public class FileActions
     {
-        string path = @"c:\Automation\MyTest.txt";
+        string path = @"MyTest.txt";
 
         public void CreateWriteFile(string text)
         {
