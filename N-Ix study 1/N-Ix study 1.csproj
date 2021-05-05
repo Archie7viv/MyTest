@@ -84,6 +84,8 @@
     <Compile Include="Basic\Task9.cs" />
     <Compile Include="Common\BasePage.cs" />
     <Compile Include="Common\BaseTest.cs" />
+    <Compile Include="RegularExpressionsTask\FileActions.cs" />
+    <Compile Include="RegularExpressionsTask\MyRegexp.cs" />
     <Compile Include="Tests\GmailTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +99,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="InputData\" />
     <Folder Include="Settings\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
