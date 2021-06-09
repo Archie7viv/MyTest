@@ -8,7 +8,7 @@ namespace Infrastructure
     {
         private readonly object fileLock = new object();
         private readonly string datetimeFormat;
-        private string logFilename;
+        private string logFilename, filePath;
         string pathPrefix = "../../";
 
         public FileLogger(string logFilename)
@@ -18,9 +18,10 @@ namespace Infrastructure
 
             // Log file header line
             string logHeader = logFilename + " is created.";
-            if (!File.Exists(logFilename))
+            filePath = pathPrefix + this.logFilename;
+            if (!File.Exists(filePath))
             {
-                WriteLine(DateTime.Now.ToString(datetimeFormat) + " " + logHeader);
+                WriteLogToFile(DateTime.Now.ToString(datetimeFormat) + " " + logHeader);
             }
         }
 
@@ -39,7 +40,7 @@ namespace Infrastructure
             WriteFormattedLog(LogLevel.WARNING, text);
         }
 
-        private void WriteLine(string text, bool append = false)
+        private void WriteLogToFile(string text, bool append = false)
         {
             try
             {
@@ -49,7 +50,7 @@ namespace Infrastructure
                 }
                 lock (fileLock)
                 {
-                    using (StreamWriter writer = new StreamWriter(pathPrefix + logFilename, append, Encoding.UTF8))
+                    using (StreamWriter writer = new StreamWriter(filePath, append, Encoding.UTF8))
                     {
                         writer.WriteLine(text);
                     }
@@ -80,7 +81,7 @@ namespace Infrastructure
                     break;
             }
 
-            WriteLine(pretext + text, true);
+            WriteLogToFile(pretext + text, true);
         }
 
         [Flags]
