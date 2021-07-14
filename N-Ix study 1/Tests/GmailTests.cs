@@ -28,7 +28,9 @@ namespace N_Ix_study_1.Basic
         [TestMethod]
         public void LoginToGmail()
         {
+            Logger.Get().Info("Open Gmail page");
             gmail.Open();
+            Logger.Get().Info("Login to Gmail account");
             gmail.Login(login, password);
 
             //Is messages list displayed

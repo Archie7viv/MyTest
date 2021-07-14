@@ -37,9 +37,17 @@ namespace N_Ix_study_1.SeleniumWebDriver
 
         public void EnterLogin(string login)
         {
-            WaitForElementToBeVisible(loginFieldLocator);
-            loginField = driver.FindElement(loginFieldLocator);
-            loginField.SendKeys(login);
+            try
+            {
+                WaitForElementToBeVisible(loginFieldLocator);
+                loginField = driver.FindElement(loginFieldLocator);
+                loginField.SendKeys(login);
+            }
+            catch(Exception ex)
+            {
+                Logger.Get().Error("Unable to enter login: " + ex.Message);
+                throw;
+            }           
         }
 
         public void ClickNextOnLogin()
@@ -51,9 +59,17 @@ namespace N_Ix_study_1.SeleniumWebDriver
 
         public void EnterPassword(string password)
         {
-            WaitForElementToBeVisible(passwordFieldLocator);
-            passwordField = driver.FindElement(passwordFieldLocator);
-            passwordField.SendKeys(password);
+            try
+            {
+                WaitForElementToBeVisible(passwordFieldLocator);
+                passwordField = driver.FindElement(passwordFieldLocator);
+                passwordField.SendKeys(password);
+            }
+            catch (Exception ex)
+            {
+                Logger.Get().Error("Unable to enter password: " + ex.Message);
+                throw;
+            }
         }
 
         public void ClickNextOnPassword()
@@ -95,6 +111,7 @@ namespace N_Ix_study_1.SeleniumWebDriver
             }
             catch (NoSuchElementException ex)
             {
+                Logger.Get().Error(ex.Message);
                 return false;
             }
             return true;
