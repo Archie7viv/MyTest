@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace N_Ix_study_1.Common
+namespace PageObjects
 {
     public class BasePage
     {

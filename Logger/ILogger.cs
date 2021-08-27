@@ -1,4 +1,4 @@
-﻿namespace Infrastructure
+﻿namespace MyLogger
 {
     public interface ILogger
     {

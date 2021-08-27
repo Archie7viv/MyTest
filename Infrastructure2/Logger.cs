@@ -1,7 +1,7 @@
-﻿using Infrastructure;
+﻿using MyLogger;
 using System;
 
-namespace N_Ix_study_1.Common
+namespace Infrastructure
 {
     public static class Logger
     {

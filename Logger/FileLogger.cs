@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace Infrastructure
+namespace MyLogger
 {
     public class FileLogger : ILogger
     {

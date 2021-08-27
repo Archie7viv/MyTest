@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Basic_OOP.BasicOOP.MyDriver
+namespace Infrastructure.MyDriver
 {
     public class MyChromeDriver : Driver
     {
@@ -9,7 +9,6 @@ namespace Basic_OOP.BasicOOP.MyDriver
         {
             driver = new ChromeDriver();
         }
-
         public override void ClickOnButton(By elementLocator)
         {
             ClickOnElement(elementLocator);

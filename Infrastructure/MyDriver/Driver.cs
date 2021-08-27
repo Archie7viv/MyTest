@@ -1,14 +1,16 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
+using WaitHelpers = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using System;
 
-namespace Basic_OOP.BasicOOP.MyDriver
+
+namespace Infrastructure.MyDriver
 {
     public abstract class Driver : IDriver
     {
         public IWebDriver driver;
         public bool isClickCalled;
+
         public virtual void ClickOnButton(By elementLocator)
         {
             ClickOnElement(elementLocator);
@@ -28,7 +30,7 @@ namespace Basic_OOP.BasicOOP.MyDriver
         internal IWebElement FindElement(By elementLocator)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(ExpectedConditions.ElementIsVisible(elementLocator));
+            wait.Until(WaitHelpers.ElementIsVisible(elementLocator));
             return driver.FindElement(elementLocator);
         }
 

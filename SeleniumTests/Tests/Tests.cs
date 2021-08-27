@@ -22,8 +22,8 @@ namespace SeleniumTests
         [TestMethod]
         public void InterfaceTest()
         {
-            myDriver.ClickOnButton(googleSearchLocator);
-            linkText = myDriver.GetTextOfElement(firstLinkLocator);
+            //myDriver.ClickOnButton(googleSearchLocator);
+            //linkText = myDriver.GetTextOfElement(firstLinkLocator);
         }
     }
 }
