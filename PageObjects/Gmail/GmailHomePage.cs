@@ -12,21 +12,21 @@ namespace PageObjects.Gmail
         By passwordFieldLocator = By.XPath("//INPUT[@type='password']");
         By loginNextButtonLocator = By.XPath("//DIV[@id='identifierNext']//BUTTON");
         By passwordNextButtonLocator = By.XPath("//DIV[@id='passwordNext']//BUTTON");
-        public GmailHomePage(IWebDriver driver) : base(driver)
+        public GmailHomePage(IDriver driver) : base(driver)
         {
         }
 
         public GmailHomePage Open()
         {
-            driver.Navigate().GoToUrl("https://mail.google.com/mail");
+            driver.Navigate(Configuration.BaseUrl);
             return this;
         }
 
-        public EmailsListPage Login(string login, string password)
+        public EmailsListPage Login()
         {
-            EnterLogin(login);
+            EnterLogin(Configuration.Login);
             ClickNextOnLogin();
-            EnterPassword(password);
+            EnterPassword(Configuration.Password);
             ClickNextOnPassword();
             return new EmailsListPage(driver);
         }
@@ -35,7 +35,7 @@ namespace PageObjects.Gmail
         {
             try
             {
-                Waits.WaitForElementToBeVisible(driver, loginFieldLocator);
+                driver.WaitForElementToBeVisible(loginFieldLocator);
                 loginField = driver.FindElement(loginFieldLocator);
                 loginField.SendKeys(login);
             }
@@ -49,7 +49,7 @@ namespace PageObjects.Gmail
 
         public GmailHomePage ClickNextOnLogin()
         {
-            Waits.WaitForElementToBeClickable(driver, loginNextButtonLocator);
+            driver.WaitForElementToBeClickable(loginNextButtonLocator);
             loginNextButton = driver.FindElement(loginNextButtonLocator);
             loginNextButton.Click();
             return this;
@@ -59,7 +59,7 @@ namespace PageObjects.Gmail
         {
             try
             {
-                Waits.WaitForElementToBeVisible(driver, passwordFieldLocator);
+                driver.WaitForElementToBeVisible(passwordFieldLocator);
                 passwordField = driver.FindElement(passwordFieldLocator);
                 passwordField.SendKeys(password);
             }
@@ -73,7 +73,7 @@ namespace PageObjects.Gmail
 
         public EmailsListPage ClickNextOnPassword()
         {
-            Waits.WaitForElementToBeClickable(driver, passwordNextButtonLocator);
+            driver.WaitForElementToBeClickable(passwordNextButtonLocator);
             passwordNextButton = driver.FindElement(passwordNextButtonLocator);
             passwordNextButton.Click();
             return new EmailsListPage(driver);

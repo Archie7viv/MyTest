@@ -8,24 +8,8 @@ namespace N_Ix_study_1.Basic
     [TestClass]
     public class GmailTests : TestBase
     {
-        private string login, password;
-        public TestContext TestContext { get; set; }
-        private GmailHomePage gmailHomePage;
         private EmailsListPage emailsListPage;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            gmailHomePage = new GmailHomePage(myDriver);   
-            login = TestContext.Properties["GmailLogin1"].ToString();
-            password = TestContext.Properties["GmailPassword1"].ToString();
-        }
-
-        [TestCleanup]
-        public void Teardown()
-        {
-            driver.Quit();
-        }
+        GmailHomePage gmailHomePage = new GmailHomePage(myDriver);
 
         [TestMethod]
         public void LoginToGmail()
@@ -33,7 +17,7 @@ namespace N_Ix_study_1.Basic
             Logger.Get().Info("Open Gmail page");
             gmailHomePage.Open();
             Logger.Get().Info("Login to Gmail account");
-            emailsListPage = gmailHomePage.Login(login, password);
+            emailsListPage = gmailHomePage.Login();
 
             //Is messages list displayed
             Assert.IsTrue(emailsListPage.IsMessagesListDisplayed(), "Messages list was not loaded");
@@ -54,7 +38,7 @@ namespace N_Ix_study_1.Basic
         public void GetLast10Emails()
         {
             gmailHomePage.Open();
-            emailsListPage = gmailHomePage.Login(login, password);
+            emailsListPage = gmailHomePage.Login();
             emailsListPage.GetEmailsByCSSSelector(10);
         }
     }

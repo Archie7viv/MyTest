@@ -1,47 +1,31 @@
-﻿using Infrastructure.MyDriver;
+﻿using Infrastructure;
+using Infrastructure.MyDriver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
 namespace SeleniumTests
 {
     [TestClass]
-    public class TestBase : Driver
+    public class TestBase
     {
-        public static string baseUrl = string.Empty;
-        public static string browserType;
-        public static bool driverType;
-        public IWebDriver myDriver;
+        public static IDriver myDriver;
 
         [AssemblyInitialize]
         public static void SetUp(TestContext context)
-        {
-            if (context.Properties["TestEnvironmentUrl"] != null)
-            {
-                baseUrl = context.Properties["TestEnvironmentUrl"].ToString();
-            }
-            browserType = context.Properties["CurrentBrowser"].ToString();
+        { 
+            Configuration.Initialize(context);
         }
 
         [TestInitialize]
         public void TestSetup()
         {
-            if (browserType == "Chrome")
-            {
-                myDriver = (IWebDriver)new MyChromeDriver();
-            }
-            else
-            {
-                myDriver = (IWebDriver)new MyFirefoxDriver();
-            }
-            //myDriver.MaximizeWindow();
-            //myDriver.Navigate(baseUrl);
+            myDriver = DriverUtils.Get();
         }
 
         [TestCleanup]
         public void TearDown()
         {
-            //myDriver.CloseBrowser();
-            myDriver.Quit();
+            DriverUtils.Quit();
         }
     }
 }

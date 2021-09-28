@@ -1,6 +1,5 @@
 ﻿using Infrastructure.MyDriver;
 using OpenQA.Selenium;
-using System;
 using System.Collections.Generic;
 
 namespace PageObjects.Gmail
@@ -9,9 +8,7 @@ namespace PageObjects.Gmail
     {
         By emailListContainer = By.XPath("//DIV[@class='aDP']");
         public string emailSubj;
-        public EmailsListPage(IWebDriver driver) : base(driver)
-        {
-        }
+        public EmailsListPage(IDriver driver) : base(driver) { }
 
         public EmailsListPage GetEmailsByClass(int numberOfEmails)
         {
@@ -36,12 +33,11 @@ namespace PageObjects.Gmail
 
         public void WaitForEmailList()
         {
-            Waits.WaitForElementToBeVisible(driver, emailListContainer);
+            driver.WaitForElementToBeVisible(emailListContainer);
         }
 
         public bool IsMessagesListDisplayed()
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             try
             {
                 driver.FindElement(By.ClassName("zE"));

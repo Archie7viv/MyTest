@@ -1,12 +1,13 @@
-﻿using OpenQA.Selenium;
+﻿using Infrastructure.MyDriver;
+using OpenQA.Selenium;
 
 namespace PageObjects
 {
     public class BasePage
     {
-        public IWebDriver driver;
+        public IDriver driver;
 
-        public BasePage(IWebDriver driver)
+        public BasePage(IDriver driver)
         {
             this.driver = driver;
         }

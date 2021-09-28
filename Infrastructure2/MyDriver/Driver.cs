@@ -1,7 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using WaitHelpers = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using System;
+using System.Collections.ObjectModel;
+using WaitHelpers = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 
 namespace Infrastructure.MyDriver
@@ -22,16 +23,23 @@ namespace Infrastructure.MyDriver
             return FindElement(elementLocator).Text;
         }
 
-        protected void ClickOnElement(By elementLocator)
+        public void ClickOnElement(By elementLocator)
         {
             FindElement(elementLocator).Click();
         }
 
-        internal IWebElement FindElement(By elementLocator)
+        public IWebElement FindElement(By elementLocator)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             wait.Until(WaitHelpers.ElementIsVisible(elementLocator));
             return driver.FindElement(elementLocator);
+        }
+
+        public ReadOnlyCollection<IWebElement> FindElements(By elementLocator, int timeout = 5)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
+            wait.Until(WaitHelpers.ElementIsVisible(elementLocator));
+            return driver.FindElements(elementLocator);
         }
 
         public void MaximizeWindow()
@@ -47,6 +55,18 @@ namespace Infrastructure.MyDriver
         public void CloseBrowser()
         {
             driver.Quit();
+        }
+
+        public void WaitForElementToBeVisible(By locator)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(WaitHelpers.ElementIsVisible(locator));
+        }
+
+        public void WaitForElementToBeClickable(By locator)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(WaitHelpers.ElementToBeClickable(locator));
         }
     }
 }
