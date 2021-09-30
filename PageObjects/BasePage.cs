@@ -1,5 +1,4 @@
 ﻿using Infrastructure.MyDriver;
-using OpenQA.Selenium;
 
 namespace PageObjects
 {

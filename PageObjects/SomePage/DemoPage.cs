@@ -3,9 +3,11 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace PageObjects.SomePage
 {
-    public class DemoPage
+    public class DemoPage : FactoryBasePage
     {
-        [FindsBy(How = How.CssSelector, Using = "//BUTTON[@id='runbtn']")]
+        public DemoPage(IWebDriver driver) : base(driver) { }
+
+        [FindsBy(How = How.CssSelector, Using = "#runbtn")]
         public IWebElement RunButton { get; set; }
 
         public void ClickRun()

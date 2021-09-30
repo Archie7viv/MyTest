@@ -1,7 +1,6 @@
 ﻿using Infrastructure;
 using Infrastructure.MyDriver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
 
 namespace SeleniumTests
 {
@@ -10,22 +9,22 @@ namespace SeleniumTests
     {
         public static IDriver myDriver;
 
-        [AssemblyInitialize]
-        public static void SetUp(TestContext context)
-        { 
-            Configuration.Initialize(context);
-        }
+        //[AssemblyInitialize]
+        //public static void SetUp(TestContext context)
+        //{ 
+        //    Configuration.Initialize(context);
+        //}
 
-        [TestInitialize]
-        public void TestSetup()
-        {
-            myDriver = DriverUtils.Get();
-        }
+        //[TestInitialize]
+        //public void TestSetup()
+        //{
+        //    myDriver = DriverUtils.Get();
+        //}
 
-        [TestCleanup]
-        public void TearDown()
-        {
-            DriverUtils.Quit();
-        }
+        //[TestCleanup]
+        //public void TearDown()
+        //{
+        //    WebDriverUtils.Quit();
+        //}
     }
 }

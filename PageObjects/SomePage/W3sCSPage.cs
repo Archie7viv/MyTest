@@ -1,25 +1,29 @@
 ﻿using Infrastructure;
 using Infrastructure.MyDriver;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace PageObjects.SomePage
 {
-    public class W3sCSPage : BasePage
+    public class W3sCSPage : FactoryBasePage
     {
-        [FindsBy(How = How.LinkText, Using = "//a[text()='Try it Yourself »']")]
+        [FindsBy(How = How.LinkText, Using = "Try it Yourself »")]
         public IWebElement TryItButton { get; set; }
 
-        public W3sCSPage(IDriver driver) : base(driver) { }
+        public W3sCSPage(IWebDriver driver) : base(driver) 
+        {
+            
+        }
 
         public void Openw3sCSPage()
         {
-            driver.Navigate(Configuration.W3SchoolsUrl);
+            driver.Navigate().GoToUrl(Configuration.W3SchoolsUrl);
         }
         public DemoPage ClickTryIt()
         {
             TryItButton.Click();
-            return new DemoPage();
+            WebDriverUtils.SwitchToNewTab();
+            return new DemoPage(driver);
         }
     }
 }
